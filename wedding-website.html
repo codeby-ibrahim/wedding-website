@@ -1,0 +1,626 @@
+'
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Wedding Website</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ENVELOPE -->
+  <div id="env" onclick="envClick()">
+    <div class="env-box">
+      <svg class="env-fl tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="24" r="12" fill="#A8BFA3" opacity=".6" />
+        <circle cx="46" cy="14" r="9" fill="#C6D8C2" opacity=".7" />
+        <circle cx="18" cy="40" r="8" fill="#7D9B76" opacity=".5" />
+        <g transform="translate(72,12) rotate(20)">
+          <ellipse cx="0" cy="0" rx="12" ry="22" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".85" />
+        </g>
+      </svg>
+      <svg class="env-fl br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="72" cy="76" r="12" fill="#A8BFA3" opacity=".6" />
+        <circle cx="54" cy="86" r="9" fill="#C6D8C2" opacity=".7" />
+        <circle cx="82" cy="60" r="8" fill="#7D9B76" opacity=".5" />
+      </svg>
+      <div class="env-body">
+        <div class="env-flap" id="envflap"></div>
+        <div class="env-inner" id="envcard">
+          <div
+            style="font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:2.5px;color:var(--t3);text-transform:uppercase;margin-bottom:5px">
+            You Are Invited</div>
+          <div class="env-iname" id="env-names">Emma &amp; James</div>
+          <div class="env-line"></div>
+          <div class="env-idate" id="env-date">Saturday, 14 June 2026</div>
+        </div>
+      </div>
+      <p class="env-hint" id="env-hint">✦ Click to open ✦</p>
+    </div>
+  </div>
+
+  <!-- EDIT BUTTON -->
+  <button id="edbtn" onclick="edOpen()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+    ✏️ Edit
+  </button>
+
+  <!-- OVERLAY -->
+  <div id="edov" onclick="edClose()"></div>
+
+  <!-- ======= EDITOR ======= -->
+  <div id="edpan">
+    <div class="edh">
+      <div>
+        <h2>✦ Website Editor</h2>
+        <p>Changes update live as you type</p>
+      </div>
+      <button class="edclose" onclick="edClose()">✕</button>
+    </div>
+    <div class="edtabs">
+      <button class="ett on" onclick="eTab('couple',this)">💍 Couple</button>
+      <button class="ett" onclick="eTab('events',this)">📍 Events</button>
+      <button class="ett" onclick="eTab('story',this)">📖 Story</button>
+      <button class="ett" onclick="eTab('party',this)">👗 Party</button>
+      <button class="ett" onclick="eTab('faq',this)">❓ FAQ</button>
+      <button class="ett" onclick="eTab('extras',this)">⚙️ Extras</button>
+      <button class="ett" onclick="eTab('colors',this)">🎨 Colors</button>
+    </div>
+    <div class="edbody">
+
+      <!-- COUPLE TAB -->
+      <div class="edsec on" id="tab-couple">
+        <div class="eddiv">Names &amp; Identity</div>
+        <div class="er2">
+          <div class="eg"><label class="el">Partner 1</label><input class="ei" id="en1" oninput="liveUp()"
+              placeholder="Emma"></div>
+          <div class="eg"><label class="el">Partner 2</label><input class="ei" id="en2" oninput="liveUp()"
+              placeholder="James"></div>
+        </div>
+        <div class="eg"><label class="el">Nav Monogram</label><input class="ei" id="emono" oninput="liveUp()"
+            placeholder="E &amp; J"></div>
+        <div class="eg"><label class="el">Tagline</label><input class="ei" id="etag" oninput="liveUp()"
+            placeholder="We Are Getting Married"></div>
+        <div class="eg"><label class="el">Wedding Hashtag</label><input class="ei" id="ehash" oninput="liveUp()"
+            placeholder="#EmmaAndJames2026"></div>
+        <div class="eg"><label class="el">Footer Quote</label><input class="ei" id="equote" oninput="liveUp()"
+            placeholder="Together is our favourite place to be"></div>
+        <div class="eg"><label class="el">Contact Email</label><input class="ei" id="eemail" oninput="liveUp()"
+            placeholder="hello@couple.com"></div>
+        <div class="eddiv">Date</div>
+        <div class="eg"><label class="el">Date for Countdown</label><input class="ei" type="date" id="edate"
+            oninput="liveUp()">
+          <p class="hint">Powers the live countdown timer</p>
+        </div>
+        <div class="eg"><label class="el">Display Date</label><input class="ei" id="eddate" oninput="liveUp()"
+            placeholder="Saturday, 14 June 2026"></div>
+        <div class="eg"><label class="el">RSVP Deadline</label><input class="ei" id="ersvpdl" oninput="liveUp()"
+            placeholder="1st May 2026"></div>
+      </div>
+
+      <!-- EVENTS TAB -->
+      <div class="edsec" id="tab-events">
+        <div class="eddiv">Ceremony</div>
+        <div class="eg"><label class="el">Ceremony Name</label><input class="ei" id="eclbl" oninput="liveUp()"
+            placeholder="Wedding Ceremony">
+          <p class="hint">e.g. Church Ceremony · Civil Ceremony · Nikah · Baraat · Vivah · Jewish Ceremony</p>
+        </div>
+        <div class="er2">
+          <div class="eg"><label class="el">Date</label><input class="ei" id="ecdate" oninput="liveUp()"
+              placeholder="Sat, 14 June 2026"></div>
+          <div class="eg"><label class="el">Time</label><input class="ei" id="ect" oninput="liveUp()"
+              placeholder="2:00 PM"></div>
+        </div>
+        <div class="eg"><label class="el">Venue Name</label><input class="ei" id="ecn" oninput="liveUp()"
+            placeholder="St. Mary's Chapel"></div>
+        <div class="eg"><label class="el">Hall / Room</label><input class="ei" id="ech" oninput="liveUp()"
+            placeholder="Main Hall"></div>
+        <div class="eg"><label class="el">Full Address</label><input class="ei" id="eca" oninput="liveUp()"
+            placeholder="123 Garden Lane, London"></div>
+        <div class="eg"><label class="el">Dress Code</label><input class="ei" id="ecd" oninput="liveUp()"
+            placeholder="Smart Casual"></div>
+        <div class="eg"><label class="el">Google Maps Link</label><input class="ei" id="ecmap" oninput="liveUp()"
+            placeholder="https://maps.google.com/..."></div>
+        <div class="eddiv">Reception</div>
+        <div class="eg"><label class="el">Reception Name</label><input class="ei" id="erlbl" oninput="liveUp()"
+            placeholder="Wedding Reception">
+          <p class="hint">e.g. Walima · Dinner Reception · After Party · Sangeet · Mehndi</p>
+        </div>
+        <div class="er2">
+          <div class="eg"><label class="el">Date</label><input class="ei" id="erdate" oninput="liveUp()"
+              placeholder="Sat, 14 June 2026"></div>
+          <div class="eg"><label class="el">Time</label><input class="ei" id="ert" oninput="liveUp()"
+              placeholder="7:00 PM"></div>
+        </div>
+        <div class="eg"><label class="el">Venue Name</label><input class="ei" id="ern" oninput="liveUp()"
+            placeholder="The Grand Ballroom"></div>
+        <div class="eg"><label class="el">Hall / Room</label><input class="ei" id="erh" oninput="liveUp()"
+            placeholder="Garden Suite"></div>
+        <div class="eg"><label class="el">Full Address</label><input class="ei" id="era" oninput="liveUp()"
+            placeholder="456 Rose Street, London"></div>
+        <div class="eg"><label class="el">Dress Code</label><input class="ei" id="erd" oninput="liveUp()"
+            placeholder="Black Tie Optional"></div>
+        <div class="eg"><label class="el">Google Maps Link</label><input class="ei" id="ermap" oninput="liveUp()"
+            placeholder="https://maps.google.com/..."></div>
+        <div class="eddiv">Accommodation &amp; Transport</div>
+        <div class="eg"><label class="el">Hotel Name</label><input class="ei" id="ehot" oninput="liveUp()"
+            placeholder="The Grand Hotel"></div>
+        <div class="er2">
+          <div class="eg"><label class="el">Promo Code</label><input class="ei" id="ehcode" oninput="liveUp()"
+              placeholder="WEDDING2026"></div>
+          <div class="eg"><label class="el">Discount</label><input class="ei" id="ehdisc" oninput="liveUp()"
+              placeholder="15%"></div>
+        </div>
+        <div class="er2">
+          <div class="eg"><label class="el">Book By</label><input class="ei" id="ehdl" oninput="liveUp()"
+              placeholder="1st May 2026"></div>
+          <div class="eg"><label class="el">Parking</label><input class="ei" id="epark" oninput="liveUp()"
+              placeholder="Valet available"></div>
+        </div>
+        <div class="eg"><label class="el">Shuttle Note</label><input class="ei" id="eshut" oninput="liveUp()"
+            placeholder="Shuttle from hotel every 30 mins"></div>
+        <div class="eddiv">Day-of Timeline</div>
+        <div class="eg"><label class="el">Timeline Items</label>
+          <p class="hint" style="margin-bottom:7px">Format: <strong>2:00 PM | Event name</strong><br>Add * at end for
+            gold dot (last item)</p><textarea class="ei eta" id="etl" oninput="liveUp()" rows="9"></textarea>
+        </div>
+      </div>
+
+      <!-- STORY TAB -->
+      <div class="edsec" id="tab-story">
+        <p class="hint" style="margin-bottom:14px;line-height:1.8">Click each chapter to expand and edit. All changes
+          apply live.</p>
+        <div id="story-editor"></div>
+      </div>
+
+      <!-- PARTY TAB -->
+      <div class="edsec" id="tab-party">
+        <p class="hint" style="margin-bottom:14px;line-height:1.8">Edit your wedding party. Leave name blank to hide a
+          card.</p>
+        <div id="party-editor"></div>
+      </div>
+
+      <!-- FAQ TAB -->
+      <div class="edsec" id="tab-faq">
+        <p class="hint" style="margin-bottom:14px;line-height:1.8">Edit FAQ items. Leave question blank to hide it.</p>
+        <div id="faq-editor"></div>
+      </div>
+
+      <!-- EXTRAS TAB -->
+      <div class="edsec" id="tab-extras">
+        <div class="eddiv">Show / Hide Sections</div>
+        <div class="togrow"><span class="toglbl">Photo strip on home page</span><label class="togwrap"><input
+              type="checkbox" id="tphotos" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Ceremony card</span><label class="togwrap"><input type="checkbox"
+              id="tcer" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Reception card</span><label class="togwrap"><input type="checkbox"
+              id="trec" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Accommodation card</span><label class="togwrap"><input type="checkbox"
+              id="thot" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Directions card</span><label class="togwrap"><input type="checkbox"
+              id="tdir" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Day-of timeline</span><label class="togwrap"><input type="checkbox"
+              id="ttl" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Wedding Party page</span><label class="togwrap"><input type="checkbox"
+              id="tparty" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Gallery page</span><label class="togwrap"><input type="checkbox"
+              id="tgal" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">FAQ page</span><label class="togwrap"><input type="checkbox" id="tfaq"
+              checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Registry / Gifts section</span><label class="togwrap"><input
+              type="checkbox" id="treg" oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Ceremony on RSVP form</span><label class="togwrap"><input
+              type="checkbox" id="trsvpc" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="togrow"><span class="toglbl">Reception on RSVP form</span><label class="togwrap"><input
+              type="checkbox" id="trsvpr" checked oninput="liveUp()"><span class="togsl"></span></label></div>
+        <div class="eddiv">Registry / Gifts</div>
+        <div class="eg"><label class="el">Registry Note</label><textarea class="ei eta" id="eregnote" oninput="liveUp()"
+            rows="3" placeholder="Your presence is the only gift we need…"></textarea></div>
+        <div class="eg"><label class="el">Registry URL</label><input class="ei" id="ereglink" oninput="liveUp()"
+            placeholder="https://registry.example.com"></div>
+        <div class="eg"><label class="el">Registry Button Text</label><input class="ei" id="eregbtn" oninput="liveUp()"
+            placeholder="View Our Registry"></div>
+        <div class="eddiv">Google Form RSVP (optional)</div>
+        <div class="eg"><label class="el">Google Form URL</label><input class="ei" id="egform" oninput="liveUp()"
+            placeholder="https://forms.gle/...">
+          <p class="hint">If filled, RSVP button opens Google Form instead.</p>
+        </div>
+        <div class="eddiv">Couple Photos (paste image URLs)</div>
+        <div class="eg"><label class="el">Photo 1</label><input class="ei" id="img1" oninput="liveUp()"
+            placeholder="https://..."></div>
+        <div class="eg"><label class="el">Photo 2</label><input class="ei" id="img2" oninput="liveUp()"
+            placeholder="https://..."></div>
+        <div class="eg"><label class="el">Photo 3</label><input class="ei" id="img3" oninput="liveUp()"
+            placeholder="https://..."></div>
+        <div class="eg"><label class="el">Photo 4</label><input class="ei" id="img4" oninput="liveUp()"
+            placeholder="https://..."></div>
+        <div class="eg"><label class="el">Photo 5</label><input class="ei" id="img5" oninput="liveUp()"
+            placeholder="https://..."></div>
+      </div>
+
+      <!-- COLORS TAB -->
+      <div class="edsec" id="tab-colors">
+        <div class="eddiv">Theme Colors</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="eg"><label class="el">Primary</label><input class="ecol" type="color" id="cs"
+              oninput="liveColors()"></div>
+          <div class="eg"><label class="el">Dark Shade</label><input class="ecol" type="color" id="csd"
+              oninput="liveColors()"></div>
+          <div class="eg"><label class="el">Light Shade</label><input class="ecol" type="color" id="csl"
+              oninput="liveColors()"></div>
+          <div class="eg"><label class="el">Mist / BG</label><input class="ecol" type="color" id="csm"
+              oninput="liveColors()"></div>
+          <div class="eg"><label class="el">Gold Accent</label><input class="ecol" type="color" id="cg"
+              oninput="liveColors()"></div>
+          <div class="eg"><label class="el">Ivory BG</label><input class="ecol" type="color" id="civ"
+              oninput="liveColors()"></div>
+        </div>
+        <div class="eddiv">One-click Presets</div>
+        <div class="prs">
+          <button class="pr" onclick="apPr('sage')" style="background:#EDF2EC;color:#4E6B47;border-color:#A8BFA3">🌿
+            Sage</button>
+          <button class="pr" onclick="apPr('blush')" style="background:#F5E8E4;color:#8B4B3E;border-color:#DBA8A2">🌸
+            Blush</button>
+          <button class="pr" onclick="apPr('navy')" style="background:#E8EBF0;color:#1E2D4A;border-color:#7A9ABF">💙
+            Navy</button>
+          <button class="pr" onclick="apPr('mocha')" style="background:#EDE5DC;color:#5C3D2E;border-color:#B89A82">☕
+            Mocha</button>
+          <button class="pr" onclick="apPr('lavender')" style="background:#EEE8F8;color:#5B3E8B;border-color:#B8A0D4">💜
+            Lavender</button>
+          <button class="pr" onclick="apPr('dusty')" style="background:#F0EBE8;color:#7B5C5C;border-color:#C4A4A4">🌹
+            Dusty</button>
+          <button class="pr" onclick="apPr('forest')" style="background:#E5EDE2;color:#2D5016;border-color:#82A860">🌲
+            Forest</button>
+          <button class="pr" onclick="apPr('midnight')" style="background:#E8E8EE;color:#1A1A3E;border-color:#8888C4">🌙
+            Midnight</button>
+          <button class="pr" onclick="apPr('terracotta')"
+            style="background:#F2EAE4;color:#7A3B2E;border-color:#C4907A">🍂 Terra</button>
+          <button class="pr" onclick="apPr('emerald')" style="background:#E2EEE8;color:#1A4A32;border-color:#5A9A78">💚
+            Emerald</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="edfoot">
+      <button class="edapply" onclick="edApply()">✓ Apply &amp; Close</button>
+      <span class="edsaved" id="edsaved">✦ All changes saved!</span>
+    </div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <nav>
+    <div class="nav-logo" id="navlogo" onclick="showPg('home')">E &amp; J</div>
+    <ul class="nav-links">
+      <li><button onclick="showPg('home')" id="nb-home" class="active">Home</button></li>
+      <li><button onclick="showPg('story')" id="nb-story">Our Story</button></li>
+      <li><button onclick="showPg('details')" id="nb-details">Details</button></li>
+      <li><button onclick="showPg('party')" id="nb-party">Wedding Party</button></li>
+      <li><button onclick="showPg('gallery')" id="nb-gallery">Gallery</button></li>
+      <li><button onclick="showPg('faq')" id="nb-faq">FAQ</button></li>
+      <li><button onclick="showPg('rsvp')" id="nb-rsvp">RSVP</button></li>
+    </ul>
+    <button class="nav-burger" onclick="toggleMob()" aria-label="Menu">☰</button>
+  </nav>
+  <div class="mob-nav" id="mobnav">
+    <button onclick="showPg('home');toggleMob()">Home</button>
+    <button onclick="showPg('story');toggleMob()">Our Story</button>
+    <button onclick="showPg('details');toggleMob()">Details</button>
+    <button onclick="showPg('party');toggleMob()" id="mbnp">Wedding Party</button>
+    <button onclick="showPg('gallery');toggleMob()" id="mbng">Gallery</button>
+    <button onclick="showPg('faq');toggleMob()" id="mbnf">FAQ</button>
+    <button onclick="showPg('rsvp');toggleMob()">RSVP</button>
+  </div>
+
+  <!-- ============ HOME ============ -->
+  <div id="pg-home" class="pg show">
+    <div class="hero">
+      <svg class="hero-fl tl" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="55" r="18" fill="#A8BFA3" opacity=".55" />
+        <circle cx="82" cy="42" r="14" fill="#C6D8C2" opacity=".65" />
+        <circle cx="45" cy="75" r="12" fill="#7D9B76" opacity=".45" />
+        <circle cx="78" cy="68" r="16" fill="#B5CAB1" opacity=".6" />
+        <circle cx="100" cy="55" r="12" fill="#A8BFA3" opacity=".55" />
+        <circle cx="90" cy="78" r="10" fill="#7D9B76" opacity=".45" />
+        <g transform="translate(145,28) rotate(22)">
+          <ellipse cx="0" cy="0" rx="22" ry="40" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".85" />
+          <line x1="0" y1="10" x2="0" y2="58" stroke="#7D9B76" stroke-width="2" opacity=".7" />
+        </g>
+        <path d="M188 8 C178 38 168 60 163 92 C158 115 155 138 152 162" stroke="#9B7B7B" stroke-width="1.8" fill="none"
+          opacity=".5" />
+        <circle cx="165" cy="88" r="4" fill="#C09090" opacity=".5" />
+        <circle cx="160" cy="112" r="3" fill="#C8A0A0" opacity=".5" />
+        <circle cx="118" cy="105" r="3" fill="#F0E9D8" opacity=".6" />
+        <circle cx="128" cy="118" r="2.5" fill="white" stroke="#D4C9B0" stroke-width=".5" opacity=".6" />
+        <ellipse cx="28" cy="128" rx="22" ry="10" fill="#7D9B76" opacity=".35" transform="rotate(-30 28 128)" />
+      </svg>
+      <svg class="hero-fl br" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="220" r="18" fill="#A8BFA3" opacity=".55" />
+        <circle cx="222" cy="235" r="14" fill="#C6D8C2" opacity=".65" />
+        <circle cx="185" cy="240" r="12" fill="#7D9B76" opacity=".45" />
+        <circle cx="218" cy="212" r="16" fill="#B5CAB1" opacity=".6" />
+        <g transform="translate(152,248) rotate(-18)">
+          <ellipse cx="0" cy="0" rx="22" ry="40" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".85" />
+          <line x1="0" y1="10" x2="0" y2="58" stroke="#7D9B76" stroke-width="2" opacity=".7" />
+        </g>
+        <ellipse cx="268" cy="178" rx="22" ry="10" fill="#7D9B76" opacity=".35" transform="rotate(30 268 178)" />
+      </svg>
+      <div class="hero-inner">
+        <p class="tagline" id="htagline">We Are Getting Married</p>
+        <div class="names"><span id="hname1">Emma</span><span class="amp">&amp;</span><span id="hname2">James</span>
+        </div>
+        <div class="rule"><span></span><span style="color:var(--go);font-size:13px">✦</span><span></span></div>
+        <p class="hdate" id="hdate">Saturday, 14 June 2026</p>
+        <p class="hvenue" id="hvenue">St. Mary's Chapel, London</p>
+        <div class="cdown">
+          <div class="cdb">
+            <div class="cdn" id="cdd">--</div>
+            <div class="cdl">Days</div>
+          </div>
+          <div class="cdb">
+            <div class="cdn" id="cdh">--</div>
+            <div class="cdl">Hours</div>
+          </div>
+          <div class="cdb">
+            <div class="cdn" id="cdm">--</div>
+            <div class="cdl">Mins</div>
+          </div>
+          <div class="cdb">
+            <div class="cdn" id="cds">--</div>
+            <div class="cdl">Secs</div>
+          </div>
+        </div>
+        <div class="hbtns">
+          <button class="btn" onclick="showPg('rsvp')">RSVP Now</button>
+          <button class="btn-out" onclick="showPg('details')">View Details</button>
+          <button class="btn-out" onclick="showPg('story')">Our Story</button>
+        </div>
+        <p class="hash" id="hhash">#EmmaAndJames2026</p>
+      </div>
+    </div>
+    <div id="pstrip-wrap">
+      <div class="pstrip" id="pstrip">
+        <div class="pstrip-cell" id="ps1">
+          <div class="pstrip-ph"><span class="ico">📷</span><span class="lbl">Photo 1</span></div>
+        </div>
+        <div class="pstrip-cell" id="ps2">
+          <div class="pstrip-ph"><span class="ico">📷</span><span class="lbl">Photo 2</span></div>
+        </div>
+        <div class="pstrip-cell" id="ps3">
+          <div class="pstrip-ph"><span class="ico">📷</span><span class="lbl">Photo 3</span></div>
+        </div>
+        <div class="pstrip-cell" id="ps4">
+          <div class="pstrip-ph"><span class="ico">📷</span><span class="lbl">Photo 4</span></div>
+        </div>
+        <div class="pstrip-cell" id="ps5">
+          <div class="pstrip-ph"><span class="ico">📷</span><span class="lbl">Photo 5</span></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="fq2" id="fq0">Together is our favourite place to be</p><small class="fsub" id="fs0">Emma &amp; James ·
+        Saturday, 14 June 2026</small>
+      <p class="fmail" id="fm0"></p>
+    </footer>
+  </div>
+
+  <!-- ============ STORY ============ -->
+  <div id="pg-story" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+        <circle cx="68" cy="34" r="10" fill="#C6D8C2" opacity=".5" />
+        <g transform="translate(125,22) rotate(22)">
+          <ellipse cx="0" cy="0" rx="14" ry="25" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".6" />
+        </g>
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="112" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+        <path d="M155 6 C148 28 142 48 138 70" stroke="#9B7B7B" stroke-width="1.8" fill="none" opacity=".38" />
+      </svg>
+      <p class="eyebrow">A Love to Remember</p>
+      <h1>Our Story</h1>
+    </div>
+    <div class="story-wrap" id="story-tl"></div>
+    <div style="text-align:center;padding:0 20px 52px"><button class="btn" onclick="showPg('rsvp')">RSVP to Celebrate
+        With Us</button></div>
+    <footer>
+      <p class="fq2" id="fq1"></p><small class="fsub" id="fs1"></small>
+    </footer>
+  </div>
+
+  <!-- ============ DETAILS ============ -->
+  <div id="pg-details" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(34,18) rotate(15)">
+          <ellipse cx="0" cy="0" rx="14" ry="26" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".6" />
+        </g>
+        <circle cx="95" cy="58" r="12" fill="#A8BFA3" opacity=".38" />
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M152 4 C145 26 138 46 134 68" stroke="#9B7B7B" stroke-width="1.8" fill="none" opacity=".38" />
+        <circle cx="68" cy="48" r="12" fill="#A8BFA3" opacity=".38" />
+      </svg>
+      <p class="eyebrow">Event Information</p>
+      <h1>Wedding Details</h1>
+    </div>
+    <div class="dgrid" id="dgrid"></div>
+    <div class="tls" id="tlsec">
+      <h3 class="tlsh">Day-of Timeline</h3>
+      <div id="daytl"></div>
+    </div>
+    <div id="regsec" style="display:none">
+      <div class="reg-wrap">
+        <p class="eyebrow">Registry &amp; Gifts</p>
+        <p class="reg-note" id="regnote"></p>
+        <a id="regbtn" href="#" target="_blank" class="btn" style="display:none;text-decoration:none"></a>
+      </div>
+    </div>
+    <footer>
+      <p class="fq2" id="fq2"></p><small class="fsub" id="fs2"></small>
+    </footer>
+  </div>
+
+  <!-- ============ WEDDING PARTY ============ -->
+  <div id="pg-party" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+        <g transform="translate(125,22) rotate(22)">
+          <ellipse cx="0" cy="0" rx="14" ry="25" fill="#F0E9D8" stroke="#C9B89A" stroke-width="1" opacity=".6" />
+        </g>
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="112" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+        <circle cx="92" cy="36" r="10" fill="#C6D8C2" opacity=".5" />
+      </svg>
+      <p class="eyebrow">The People We Love Most</p>
+      <h1>Wedding Party</h1>
+    </div>
+    <div class="party-wrap">
+      <div id="bridal-section">
+        <h3 class="party-sec-h" id="bride-h">Bridal Party</h3>
+        <div class="party-grid" id="bride-grid"></div>
+      </div>
+      <div id="groom-section">
+        <h3 class="party-sec-h" id="groom-h">Groom's Party</h3>
+        <div class="party-grid" id="groom-grid"></div>
+      </div>
+    </div>
+    <footer>
+      <p class="fq2" id="fq3"></p><small class="fsub" id="fs3"></small>
+    </footer>
+  </div>
+
+  <!-- ============ GALLERY ============ -->
+  <div id="pg-gallery" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="112" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+      </svg>
+      <p class="eyebrow">Our Moments Together</p>
+      <h1>Photo Gallery</h1>
+    </div>
+    <div class="gal-wrap">
+      <p class="gal-note">A collection of our favourite moments. Add your own photos through the editor panel.</p>
+      <div class="gal-grid" id="galgrid"></div>
+    </div>
+    <footer>
+      <p class="fq2" id="fq4"></p><small class="fsub" id="fs4"></small>
+    </footer>
+  </div>
+
+  <!-- ============ FAQ ============ -->
+  <div id="pg-faq" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="112" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+      </svg>
+      <p class="eyebrow">Everything You Need to Know</p>
+      <h1>FAQ</h1>
+    </div>
+    <div class="faq-wrap" id="faqlist"></div>
+    <div style="text-align:center;padding:0 20px 52px">
+      <p
+        style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--t2);margin-bottom:16px">
+        Still have questions?</p>
+      <a id="faqemail" href="#" class="btn-out" style="text-decoration:none">Get in Touch</a>
+    </div>
+    <footer>
+      <p class="fq2" id="fq5"></p><small class="fsub" id="fs5"></small>
+    </footer>
+  </div>
+
+  <!-- ============ RSVP ============ -->
+  <div id="pg-rsvp" class="pg">
+    <div class="pgh">
+      <svg class="pgh-fl l" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="48" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+        <circle cx="68" cy="34" r="10" fill="#C6D8C2" opacity=".5" />
+      </svg>
+      <svg class="pgh-fl r" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="112" cy="48" r="14" fill="#A8BFA3" opacity=".4" />
+      </svg>
+      <p class="eyebrow" id="rsvpey">Kindly Reply By 1st May 2026</p>
+      <h1>RSVP</h1>
+    </div>
+    <div class="rsvp-wrap">
+      <div class="rcard">
+        <div id="rsvpform">
+          <p
+            style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--t2);margin-bottom:24px;line-height:1.9">
+            Your presence is the greatest gift. Please let us know if you'll be joining our celebration.</p>
+          <div class="fr2">
+            <div class="fg"><label class="fl">First Name</label><input type="text" class="fi" placeholder="First name">
+            </div>
+            <div class="fg"><label class="fl">Last Name</label><input type="text" class="fi" placeholder="Last name">
+            </div>
+          </div>
+          <div class="fg"><label class="fl">Email Address</label><input type="email" class="fi"
+              placeholder="your@email.com"></div>
+          <div class="fg"><label class="fl">Phone Number</label><input type="tel" class="fi"
+              placeholder="+1 000 000 0000"></div>
+          <div class="fdiv">Will you be attending?</div>
+          <div class="fg">
+            <div class="rg">
+              <div class="rb"><input type="radio" name="att" id="ry"><label for="ry">✓ Joyfully Accept</label></div>
+              <div class="rb"><input type="radio" name="att" id="rn"><label for="rn">✗ Regretfully Decline</label></div>
+            </div>
+          </div>
+          <div class="fg"><label class="fl">Number of Guests</label>
+            <select class="fi">
+              <option>Select</option>
+              <option>1 — Just me</option>
+              <option>2 — Myself &amp; partner</option>
+              <option>3 — Family of 3</option>
+              <option>4 — Family of 4</option>
+              <option>5+ — Please contact us</option>
+            </select>
+          </div>
+          <div class="fg" id="evsec"><label class="fl">Which Event(s)?</label>
+            <div class="ecks" id="evchks"></div>
+          </div>
+          <div class="fg"><label class="fl">Dietary Requirements</label><input type="text" class="fi"
+              placeholder="Vegetarian · Vegan · Halal · Kosher · Gluten Free… (optional)"></div>
+          <div class="fg"><label class="fl">Song Request 🎵</label><input type="text" class="fi"
+              placeholder="What song gets you on the dance floor?"></div>
+          <div class="fg"><label class="fl">Message for the Couple 💌</label><textarea class="fi" rows="3"
+              placeholder="Share your well wishes or a favourite memory…" style="resize:vertical"></textarea></div>
+          <button class="bsub" id="rsvpbtn" onclick="submitRSVP()">Send My RSVP</button>
+        </div>
+        <div class="succ" id="rsvpok" style="display:none">
+          <div style="font-size:46px">🌿</div>
+          <h3>Thank You!</h3>
+          <p id="oktxt">We've received your RSVP!</p>
+          <button class="btn-out" style="margin-top:22px" onclick="showPg('home')">Back to Home</button>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="fq2" id="fq6"></p><small class="fsub" id="fs6"></small>
+    </footer>
+  </div>
+
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
